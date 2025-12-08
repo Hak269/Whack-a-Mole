@@ -8,32 +8,36 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div id="game-header">
-        <p id="current-level">Level 0/5</p>
-        <h1 id="game-title">Whack a Mole</h1>
-        <section id="top-right">
-            <div id="attempts">
-                <img src="./img/NooN1.png" alt="" class="attempt">
-                <img src="./img/NooN1.png" alt="" class="attempt">
-                <img src="./img/NooN1.png" alt="" class="attempt">
+    <div id="landing-page"></div>  
+    <button id="start">Start Game</button>
+    <div id="the-game">
+            <div id="game-header">
+                <p id="current-level">Level 0/5</p>
+                <h1 id="game-title">Whack a Mole</h1>
+                <section id="top-right">
+                    <div id="attempts">
+                        <img src="./img/NooN1.png" alt="" class="attempt">
+                        <img src="./img/NooN1.png" alt="" class="attempt">
+                        <img src="./img/NooN1.png" alt="" class="attempt">
+                    </div>
+                    <div>
+                        <p id="timer">Time left 30s</p>
+                    </div>
+                </section>
             </div>
-            <div>
-                <p id="timer">Time left 30s</p>
+            <div id="game-board">
+                <section id="board">
+                    <div class="sqr" id="0"></div>
+                    <div class="sqr" id="1"></div>
+                    <div class="sqr" id="2"></div>
+                    <div class="sqr" id="3"></div>
+                    <div class="sqr" id="4"></div>
+                    <div class="sqr" id="5"></div>
+                    <div class="sqr" id="6"></div>
+                    <div class="sqr" id="7"></div>
+                    <div class="sqr" id="8"></div>
+                </section>
             </div>
-        </section>
-    </div>
-    <div id="game-board">
-        <section id="board">
-            <div class="sqr" id="0"></div>
-            <div class="sqr" id="1"></div>
-            <div class="sqr" id="2"></div>
-            <div class="sqr" id="3"></div>
-            <div class="sqr" id="4"></div>
-            <div class="sqr" id="5"></div>
-            <div class="sqr" id="6"></div>
-            <div class="sqr" id="7"></div>
-            <div class="sqr" id="8"></div>
-        </section>
-    </div>
+        </div>
 </body>
 </html>

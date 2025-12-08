@@ -5,12 +5,6 @@ const currentLevelElement = document.querySelector('#current-level')
 const sqrElements = document.querySelectorAll('.sqr')
 
 
-console.log(attemptsElement)
-console.log(timerElement)
-console.log(currentLevelElement)
-console.log(sqrElements)
-
-
 /*---------------------------- Variables (state) ----------------------------*/
 
 
