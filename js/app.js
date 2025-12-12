@@ -16,10 +16,10 @@ let timer = 15;
 let roundInterval
 let moleAppear
 let moleDisAppear
-let minAppear = 5.2;
-let maxAppear = 9;
+let minAppear = 1.2;
+let maxAppear = 2;
 let moleSpeedRange = Math.random() * (maxAppear - minAppear) + minAppear;
-
+const moleSqrs = [{}, {}, {}, {}, {}, {}, {}, {}, {}]
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -46,35 +46,34 @@ function showMole()
     let moleSqr = Math.floor(Math.random() * 9)
     if(sqrElements[moleSqr].textContent === "X")
     {
+        moleSqr = Math.floor(Math.random() * 9)
         console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         sqrElements[moleSqr].textContent = "X"
-        setTimeout(() => {
+        moleSqrs[moleSqr].timeOut = setTimeout(() => {
             sqrElements[moleSqr].textContent = ""
             console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         }, randomAppearAndHidePeriod() * 1000);
     }
     else
     {
-        moleSqr = Math.floor(Math.random() * 9)
         sqrElements[moleSqr].textContent = "X"
         console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         sqrElements[moleSqr].textContent = "X"
-        setTimeout(() => {
+        moleSqrs[moleSqr].timeOut = setTimeout(() => {
             sqrElements[moleSqr].textContent = ""
             console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         }, randomAppearAndHidePeriod() * 1000);
     }
-    //moleDisAppear? = setTimeout(() => {
-        
-    //}, moleSpeedRange);
+
 }   
 
 function hit(event)
 {
-    event.textContent = 'x'
-    if(event.textContent === "X")
+    if(event.target.textContent === "X")
     {
-        event.textContent = ''
+        console.log(moleSqrs[event.target.id].timeOut)
+        event.target.textContent = ''
+        clearTimeout(moleSqrs[event.target.id].timeOut)
         console.log("HITT")
     }
     else
