@@ -14,9 +14,12 @@ let currentLevel = 0;
 let lives = 3;
 let timer = 15;
 let roundInterval
-let minAppear = 1.2;
-let maxAppear = 2;
+let moleAppear
+let moleDisAppear
+let minAppear = 5.2;
+let maxAppear = 9;
 let moleSpeedRange = Math.random() * (maxAppear - minAppear) + minAppear;
+
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -33,8 +36,52 @@ function startGame()
 
 function levelRunTime()
 {
-    levelInterval = setInterval(timerDec, 1000);
+    roundInterval = setInterval(timerDec, 1000);
     setTimeout(betweenLevels, timer * 1000);
+    moleAppear = setInterval(showMole, moleSpeedRange * 1000)
+}
+
+function showMole()
+{
+    let moleSqr = Math.floor(Math.random() * 9)
+    if(sqrElements[moleSqr].textContent === "X")
+    {
+        console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        sqrElements[moleSqr].textContent = "X"
+        setTimeout(() => {
+            sqrElements[moleSqr].textContent = ""
+            console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        }, randomAppearAndHidePeriod() * 1000);
+    }
+    else
+    {
+        moleSqr = Math.floor(Math.random() * 9)
+        sqrElements[moleSqr].textContent = "X"
+        console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        sqrElements[moleSqr].textContent = "X"
+        setTimeout(() => {
+            sqrElements[moleSqr].textContent = ""
+            console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        }, randomAppearAndHidePeriod() * 1000);
+    }
+    //moleDisAppear? = setTimeout(() => {
+        
+    //}, moleSpeedRange);
+}   
+
+function hit(event)
+{
+    event.textContent = 'x'
+    if(event.textContent === "X")
+    {
+        event.textContent = ''
+        console.log("HITT")
+    }
+    else
+    {
+        lives -= 1        
+        console.log(lives)
+    }
 }
 
 function levelUp()
@@ -44,8 +91,10 @@ function levelUp()
     minAppear -= 0.1;
     maxAppear -= 0.2;
     moleSpeedRange = Math.random() * (maxAppear - minAppear) + minAppear
+
 }
 
+//Timer funtion
 function timerDec()
 {
     timerElement.textContent = `Time Left ${timer -= 1}`
@@ -65,9 +114,20 @@ function betweenLevels()
 {
     landingPageElement.style.display = "block"
     startElement.style.display = "block"
-    clearInterval(levelInterval)
+    clearInterval(roundInterval)
+    clearInterval(moleAppear)
+}
+
+function randomAppearAndHidePeriod()
+{
+    return 0.3 + Math.random() * (maxAppear - minAppear) + minAppear
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 startElement.addEventListener('click', startGame)
+
+for(let sqr of sqrElements)
+{
+    sqr.addEventListener('click', hit)
+}
