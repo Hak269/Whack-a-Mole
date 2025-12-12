@@ -78,7 +78,7 @@ function hit(event)
     }
     else
     {
-        lives -= 1        
+        wrongHit()
         console.log(lives)
     }
 }
@@ -107,8 +107,22 @@ function nextLevel()
 function wrongHit()
 {
     //check if user out of lives and lose game
+    lives -= 1;
+    attemptsElements[lives].src = "./img/EeeE1.png"
+
+    if(lives <= 0 )
+    {
+        gameLost()
+    }
 }
 
+function gameLost()
+{
+    landingPageElement.style.display = "block"
+    startElement.style.display = "block"
+    clearInterval(roundInterval)
+    clearInterval(moleAppear)
+}
 function betweenLevels()
 {
     landingPageElement.style.display = "block"
