@@ -6,6 +6,7 @@ const sqrElements = document.querySelectorAll('.sqr')
 const landingPageElement = document.querySelector('#landing-page')
 const startElement = document.querySelector('#start')
 const theGameElement = document.querySelector('#the-game')
+const highScreenMessageElement = document.querySelector('#l-Screen-message')
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -31,6 +32,12 @@ function startGame()
 {
     landingPageElement.style.display = "none"
     startElement.style.display = "none"
+    highScreenMessageElement.style.display = "none"
+    if(startElement.textContent === "Next Level")
+    {
+        levelUp()
+        nextLevel()
+    }
     levelRunTime()
 }
 
@@ -96,13 +103,9 @@ function levelUp()
 //Timer funtion
 function timerDec()
 {
-    timerElement.textContent = `Time Left ${timer -= 1}`
+    timerElement.textContent = `Time Left ${timer -= 1}s`
 }
 
-function nextLevel()
-{
-    //trigger levelUp => trigger round runtime => 
-}
 
 function wrongHit()
 {
@@ -120,6 +123,10 @@ function gameLost()
 {
     landingPageElement.style.display = "block"
     startElement.style.display = "block"
+    highScreenMessageElement.style.display = "block"
+    startElement.textContent = "Play Again"
+    highScreenMessageElement.textContent = "You Lost"
+    highScreenMessageElement.style.color = "Red"
     clearInterval(roundInterval)
     clearInterval(moleAppear)
 }
@@ -127,6 +134,8 @@ function betweenLevels()
 {
     landingPageElement.style.display = "block"
     startElement.style.display = "block"
+    highScreenMessageElement.style.display = "block"
+    startElement.textContent = "Next Level"
     clearInterval(roundInterval)
     clearInterval(moleAppear)
 }

@@ -44,17 +44,17 @@ body
 }
 
 #landing-page {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     backdrop-filter: blur(8px);
+    background-color: rgba(0,0,0,0.3);
     z-index: 1;
 }
 
 #start {
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 12px 24px;
     font-size: 18px;
     background-color: #007bff;
@@ -63,20 +63,25 @@ body
     border-radius: 6px;
     cursor: pointer;
     z-index: 2;
-
 }
 
 #high-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    gap: 16px;
     z-index: 2;
 }
 
 #l-Screen-message {
-    z-index: 2;
-
+  font-size: 32px;
+  color: brown;
+  margin: 0;
+  z-index: 2;
 }
 
 #page-content {
