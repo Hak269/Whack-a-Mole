@@ -11,9 +11,10 @@ const highScreenMessageElement = document.querySelector('#l-Screen-message')
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let currentLevel = 0;
+let currentLevel = 1;
 let lives = 3;
 let timer = 15;
+let baseTimer = 15;
 let roundInterval
 let moleAppear
 let moleDisAppear
@@ -35,8 +36,15 @@ function startGame()
     highScreenMessageElement.style.display = "none"
     if(startElement.textContent === "Next Level")
     {
+        console.log("next Level")
         levelUp()
-        nextLevel()
+    }
+    else if (startElement.textContent === "Play Again")
+    {
+        for(let attempt of attemptsElements)
+            attempt.src = "./img/NooN1.png"
+
+        resetGame()
     }
     levelRunTime()
 }
@@ -54,21 +62,23 @@ function showMole()
     if(sqrElements[moleSqr].textContent === "X")
     {
         moleSqr = Math.floor(Math.random() * 9)
-        console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        //console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         sqrElements[moleSqr].textContent = "X"
         moleSqrs[moleSqr].timeOut = setTimeout(() => {
+            wrongHit()
             sqrElements[moleSqr].textContent = ""
-            console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+            //console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         }, randomAppearAndHidePeriod() * 1000);
     }
     else
     {
         sqrElements[moleSqr].textContent = "X"
-        console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        //console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         sqrElements[moleSqr].textContent = "X"
         moleSqrs[moleSqr].timeOut = setTimeout(() => {
+            wrongHit()
             sqrElements[moleSqr].textContent = ""
-            console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+            //console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         }, randomAppearAndHidePeriod() * 1000);
     }
 
@@ -78,7 +88,6 @@ function hit(event)
 {
     if(event.target.textContent === "X")
     {
-        console.log(moleSqrs[event.target.id].timeOut)
         event.target.textContent = ''
         clearTimeout(moleSqrs[event.target.id].timeOut)
         console.log("HITT")
@@ -93,10 +102,12 @@ function hit(event)
 function levelUp()
 {
     //update timer and choose speed range of showing the moles
-    timer += 15;
+    timer = baseTimer + 15;
+    baseTimer = timer;
     minAppear -= 0.1;
     maxAppear -= 0.2;
     moleSpeedRange = Math.random() * (maxAppear - minAppear) + minAppear
+    currentLevel += 1
 
 }
 
@@ -135,6 +146,7 @@ function betweenLevels()
     landingPageElement.style.display = "block"
     startElement.style.display = "block"
     highScreenMessageElement.style.display = "block"
+    highScreenMessageElement.textContent = "Nice"
     startElement.textContent = "Next Level"
     clearInterval(roundInterval)
     clearInterval(moleAppear)
@@ -143,6 +155,16 @@ function betweenLevels()
 function randomAppearAndHidePeriod()
 {
     return 0.3 + Math.random() * (maxAppear - minAppear) + minAppear
+}
+
+function resetGame()
+{
+    minAppear = 1.2;
+    maxAppear = 2;
+    currentLevel = 0;
+    lives = 3;
+    timer = 15;
+    baseTimer = 15
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
