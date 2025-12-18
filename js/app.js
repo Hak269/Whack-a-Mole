@@ -13,14 +13,16 @@ const highScreenMessageElement = document.querySelector('#l-Screen-message')
 
 let currentLevel = 1;
 let lives = 3;
-let timer = 15;
-let baseTimer = 15;
+let timer = 7;
+let baseTimer = 7;
 let roundInterval
+let roundTimeout
 let moleAppear
 let moleDisAppear
 let minAppear = 1.2;
 let maxAppear = 2;
-let moleSpeedRange = Math.random() * (maxAppear - minAppear) + minAppear;
+let moleSpeedRange = 0.3 + Math.random() * (maxAppear - minAppear) + minAppear
+
 const moleSqrs = [{}, {}, {}, {}, {}, {}, {}, {}, {}]
 
 /*------------------------ Cached Element References ------------------------*/
@@ -46,13 +48,16 @@ function startGame()
 
         resetGame()
     }
+
+    currentLevelElement.textContent = `Level ${currentLevel}/5`
     levelRunTime()
 }
 
 function levelRunTime()
 {
+    console.log("round started")
     roundInterval = setInterval(timerDec, 1000);
-    setTimeout(betweenLevels, timer * 1000);
+    roundTimeout = setTimeout(betweenLevels, timer * 1000);
     moleAppear = setInterval(showMole, moleSpeedRange * 1000)
 }
 
@@ -102,13 +107,13 @@ function hit(event)
 function levelUp()
 {
     //update timer and choose speed range of showing the moles
-    timer = baseTimer + 15;
+    timer = baseTimer + 3;
     baseTimer = timer;
     minAppear -= 0.1;
     maxAppear -= 0.2;
     moleSpeedRange = Math.random() * (maxAppear - minAppear) + minAppear
     currentLevel += 1
-
+    console.log("values updated")
 }
 
 //Timer funtion
@@ -140,16 +145,39 @@ function gameLost()
     highScreenMessageElement.style.color = "Red"
     clearInterval(roundInterval)
     clearInterval(moleAppear)
+    clearTimeout(roundTimeout)
 }
 function betweenLevels()
 {
+
     landingPageElement.style.display = "block"
     startElement.style.display = "block"
     highScreenMessageElement.style.display = "block"
-    highScreenMessageElement.textContent = "Nice"
-    startElement.textContent = "Next Level"
+
+    if(currentLevel === 5)
+    {
+        highScreenMessageElement.textContent = "Good Job!!"
+        startElement.textContent = "Play Again"
+    }
+    else
+    {
+        highScreenMessageElement.textContent = "Nice"
+        startElement.textContent = "Next Level"
+    }
+
     clearInterval(roundInterval)
     clearInterval(moleAppear)
+    clearTimeout(roundTimeout)
+
+    for(let moleSqr of moleSqrs)
+    {
+        clearTimeout(moleSqr.timeOut)
+    }
+
+    for(sqr of sqrElements)
+    {
+        sqr.textContent = ""
+    }
 }
 
 function randomAppearAndHidePeriod()
@@ -161,10 +189,11 @@ function resetGame()
 {
     minAppear = 1.2;
     maxAppear = 2;
-    currentLevel = 0;
+    currentLevel = 1;
     lives = 3;
-    timer = 15;
-    baseTimer = 15
+    timer = 7;
+    baseTimer = 7
+    console.log("values reset")
 }
 
 /*----------------------------- Event Listeners -----------------------------*/

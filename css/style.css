@@ -41,8 +41,10 @@ body
   display: flex;
   flex-wrap: wrap;
   width: 600px;
+  background-image:url(../img/Board.png);
+  background-position: center;
 }
-
+/*
 #landing-page {
     position: fixed;
     top: 0;
@@ -52,7 +54,7 @@ body
     backdrop-filter: blur(8px);
     background-color: rgba(0,0,0,0.3);
     z-index: 1;
-}
+}*/
 
 #start {
     padding: 12px 24px;
