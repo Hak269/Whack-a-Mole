@@ -67,25 +67,25 @@ function levelRunTime()
 function showMole()
 {
     let moleSqr = Math.floor(Math.random() * 9)
-    if(sqrElements[moleSqr].textContent === "X")
+    if(!mole[moleSqr].classList.contains("pop"))
     {
         moleSqr = Math.floor(Math.random() * 9)
         //console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
-        sqrElements[moleSqr].textContent = "X"
+        mole[moleSqr].classList.add('pop');
         moleSqrs[moleSqr].timeOut = setTimeout(() => {
             wrongHit()
-            sqrElements[moleSqr].textContent = ""
+            mole[moleSqr].classList.remove('pop');
             //console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         }, randomAppearAndHidePeriod() * 1000);
     }
     else
     {
-        sqrElements[moleSqr].textContent = "X"
+        
         //console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
-        sqrElements[moleSqr].textContent = "X"
+        mole[moleSqr].classList.add('pop');
         moleSqrs[moleSqr].timeOut = setTimeout(() => {
             wrongHit()
-            sqrElements[moleSqr].textContent = ""
+            mole[moleSqr].classList.remove('pop');
             //console.log(`removed  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
         }, randomAppearAndHidePeriod() * 1000);
     }
@@ -94,9 +94,9 @@ function showMole()
 
 function hit(event)
 {
-    if(event.target.textContent === "X")
+    if(mole[event.target.id].classList.contains("pop"))
     {
-        event.target.textContent = ''
+        mole[event.target.id].classList.remove('pop');
         clearTimeout(moleSqrs[event.target.id].timeOut)
         console.log("HITT")
     }
@@ -149,6 +149,17 @@ function gameLost()
     clearInterval(roundInterval)
     clearInterval(moleAppear)
     clearTimeout(roundTimeout)
+
+    for(let moleSqr of moleSqrs)
+    {
+        clearTimeout(moleSqr.timeOut)
+    }
+
+    for(oneMole of mole)
+    {
+        oneMole.classList.remove('pop');
+    }
+
 }
 function betweenLevels()
 {
@@ -177,9 +188,9 @@ function betweenLevels()
         clearTimeout(moleSqr.timeOut)
     }
 
-    for(sqr of sqrElements)
+    for(oneMole of mole)
     {
-        sqr.textContent = ""
+        oneMole.classList.remove('pop');
     }
 }
 
