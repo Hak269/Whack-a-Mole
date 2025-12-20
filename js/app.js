@@ -67,10 +67,11 @@ function levelRunTime()
 function showMole()
 {
     let moleSqr = Math.floor(Math.random() * 9)
-    if(!mole[moleSqr].classList.contains("pop"))
+    if(mole[moleSqr].classList.contains("pop"))
     {
         moleSqr = Math.floor(Math.random() * 9)
         //console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        mole[moleSqr].src = "./img/mole.png"
         mole[moleSqr].classList.add('pop');
         moleSqrs[moleSqr].timeOut = setTimeout(() => {
             wrongHit()
@@ -82,6 +83,7 @@ function showMole()
     {
         
         //console.log(`inserted  ${moleSqr} time ${randomAppearAndHidePeriod()}`)
+        mole[moleSqr].src = "./img/mole.png"
         mole[moleSqr].classList.add('pop');
         moleSqrs[moleSqr].timeOut = setTimeout(() => {
             wrongHit()
@@ -97,6 +99,7 @@ function hit(event)
     if(mole[event.target.id].classList.contains("pop"))
     {
         mole[event.target.id].classList.remove('pop');
+        mole[event.target.id].src = "./img/bonked.png"
         clearTimeout(moleSqrs[event.target.id].timeOut)
         console.log("HITT")
     }
