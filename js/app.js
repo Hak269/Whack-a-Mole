@@ -7,6 +7,7 @@ const landingPageElement = document.querySelector('#landing-page')
 const startElement = document.querySelector('#start')
 const theGameElement = document.querySelector('#the-game')
 const highScreenMessageElement = document.querySelector('#l-Screen-message')
+const mole = document.querySelectorAll('.mole');
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -36,6 +37,8 @@ function startGame()
     landingPageElement.style.display = "none"
     startElement.style.display = "none"
     highScreenMessageElement.style.display = "none"
+ 
+
     if(startElement.textContent === "Next Level")
     {
         console.log("next Level")

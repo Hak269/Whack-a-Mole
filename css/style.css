@@ -35,6 +35,8 @@ body
   border: 3px solid black;
   font-size: 64px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 #board {
@@ -44,6 +46,7 @@ body
   background-image:url(../img/Board12.png);
   background-position: center;
   background-size: contain;
+
 }
 /*
 #landing-page {
@@ -57,10 +60,20 @@ body
     z-index: 1;
 }*/
 
-#mole {
+.mole {
   height: 100%;
   width: 100%;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  bottom: -100%;
+  transition: transform 0.5s ease;
 }
+
+.pop {
+  transform: translateY(-100%);
+}
+
 
 #start {
     padding: 12px 24px;
@@ -97,3 +110,4 @@ body
   z-index: 0;
   padding: 40px;
 }
+
