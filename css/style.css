@@ -41,8 +41,9 @@ body
   display: flex;
   flex-wrap: wrap;
   width: 600px;
-  background-image:url(../img/Board.png);
+  background-image:url(../img/Board12.png);
   background-position: center;
+  background-size: contain;
 }
 /*
 #landing-page {
@@ -55,6 +56,11 @@ body
     background-color: rgba(0,0,0,0.3);
     z-index: 1;
 }*/
+
+#mole {
+  height: 100%;
+  width: 100%;
+}
 
 #start {
     padding: 12px 24px;
