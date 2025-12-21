@@ -80,7 +80,7 @@ body
 #start {
     padding: 12px 24px;
     font-size: 18px;
-    background-color: #007bff;
+    background-color: #0fc14d;
     color: white;
     border: none;
     border-radius: 6px;
@@ -102,7 +102,7 @@ body
 
 #l-Screen-message {
   font-size: 32px;
-  color: brown;
+  color: #f4c99c;
   margin: 0;
   z-index: 2;
 }
