@@ -14,7 +14,6 @@
 {
     width: 600px;
     height: 600px;
-    border: 5px solid black;
     margin: auto;
 }
 
@@ -32,7 +31,7 @@ body
 .sqr {
   width: 33%;
   aspect-ratio: 1/1;
-  border: 3px solid black;
+  border: 3px solid #70421bc2;
   font-size: 64px;
   text-align: center;
   position: relative;
