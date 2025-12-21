@@ -147,7 +147,7 @@ function gameLost()
     startElement.style.display = "block"
     highScreenMessageElement.style.display = "block"
     startElement.textContent = "Play Again"
-    highScreenMessageElement.textContent = "You Lost"
+    highScreenMessageElement.textContent = "You Lost, Good luck next time :p"
     highScreenMessageElement.style.color = "Red"
     clearInterval(roundInterval)
     clearInterval(moleAppear)
@@ -173,12 +173,12 @@ function betweenLevels()
 
     if(currentLevel === 5)
     {
-        highScreenMessageElement.textContent = "Good Job!!"
+        highScreenMessageElement.textContent = "You Won, Good Job!!"
         startElement.textContent = "Play Again"
     }
     else
     {
-        highScreenMessageElement.textContent = "Nice"
+        highScreenMessageElement.textContent = "You completed the Level, Nice!"
         startElement.textContent = "Next Level"
     }
 
