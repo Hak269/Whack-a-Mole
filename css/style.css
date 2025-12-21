@@ -8,6 +8,8 @@
 {
     display: flex;
     justify-content: space-between;
+    font-family: fantasy;
+    color: chocolate;
 }
 
 #game-board
